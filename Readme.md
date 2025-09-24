@@ -57,10 +57,10 @@ template:
         ports:
         - containerPort: 80
         resources:
-        requests:
+          requests:
             cpu: 100m
             memory: 128Mi
-        limits:
+          limits:
             cpu: 200m
             memory: 256Mi
 ```
@@ -106,10 +106,10 @@ template:
             ports:
             - containerPort: 80
             resources:
-            requests:
+              requests:
                 cpu: 75m
                 memory: 128Mi
-            limits:
+              limits:
                 cpu: 200m
                 memory: 256Mi
     ```
