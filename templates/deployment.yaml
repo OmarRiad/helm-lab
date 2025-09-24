@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+    {{- include "myapp.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+      {{- include "myapp.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+        {{- include "myapp.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Values.appName }}
+        image: {{ .Values.image.repository | default "nginx" | lower }}:{{ if .Values.image.isProduction }}1.27-alpine{{ else }}latest{{ end }}
+        ports:
+        - containerPort: 80
+        {{- include "myapp.containerResources" . | nindent 8 }}

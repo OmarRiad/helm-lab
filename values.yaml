@@ -1,0 +1,16 @@
+replicaCount: 1
+appName: nginx
+image:
+  repository: nginx # Default repo
+  isProduction: false # Flag for prod/dev
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+
+    

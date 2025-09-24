@@ -1,0 +1,5 @@
+resources:
+  limits:
+    memory: 256Mi # Override only memory limit
+  requests: # Let's override CPU request too
+    cpu: 75m
