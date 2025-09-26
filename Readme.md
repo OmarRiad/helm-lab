@@ -5,7 +5,7 @@
 ### Define Template: Edit templates/_helpers.tpl 
 - Define a named template (e.g., `"myapp.containerResources"`)
 - Inside the define , generate the standard Kubernetes `resources:` block(limits & requests).
-    ```bash
+    ```yaml
     {{- define "myapp.containerResources" -}}
     resources:
     requests:
@@ -20,13 +20,17 @@
 `values.yaml`
 ### Include Template:
 
-```bash
+```yaml
 {{- include "myapp.containerResources" . | nindent 8 }}
 ```
 
 ### Test (Default): Run `helm template .`
+
 ```bash
 omar@omar-Inspiron-5482:~/Desktop/ITI/Helm/mychart$ helm template .
+```
+
+```yaml
 ---
 # Source: mychart/templates/deployment.yaml
 apiVersion: apps/v1
@@ -66,7 +70,7 @@ template:
 ```
 ### Test (Override): 
 - Create an override file `override-resources.yaml`:
-    ```bash
+    ```yaml
   resources:
     limits:
       memory: 256Mi # Override only memory limit
@@ -74,8 +78,11 @@ template:
       cpu: 75m
     ```
 - Run `helm template . -f override-resources.yaml`
-    ```bash
-    omar@omar-Inspiron-5482:~/Desktop/ITI/Helm/mychart$ helm template . -f override-resources.yaml 
+    
+    ```bash 
+    omar@omar-Inspiron-5482:~/Desktop/ITI/Helm/mychart$ helm template -f override-resources.yaml 
+    ```
+    ```yaml
     ---
     # Source: mychart/templates/deployment.yaml
     apiVersion: apps/v1
